@@ -1,0 +1,1 @@
+device=cuda | objects=2 | epochs=2000 | MSE=6.205010e-01 | MAE=6.553878e-01 | MAX_ERR=5.318655e+00

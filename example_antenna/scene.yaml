@@ -1,0 +1,86 @@
+scene:
+  source:
+    x0: 0.8
+    y0: 1.0
+    amplitude: 1.0
+    frequency_hz: 2000000000.0
+  air:
+    absorption: 0.05
+  objects:
+  - type: rect
+    material: metal
+    x1: 0.5
+    x2: 1.0
+    y1: 0.5
+    y2: 1.0
+  - type: circle
+    material: glass
+    cx: 1.8
+    cy: 1.0
+    r: 0.25
+materials:
+  air:
+    absorption: 0.05
+    R: 0.0
+    T: 1.0
+    scatter: 0.0
+  metal:
+    absorption: 5.0
+    R: 0.9
+    T: 0.1
+    scatter: 1.0
+  plastic:
+    absorption: 0.35
+    R: 0.1
+    T: 0.9
+    scatter: 0.18
+  glass:
+    absorption: 0.6
+    R: 0.15
+    T: 0.85
+    scatter: 0.25
+  concrete:
+    absorption: 2.5
+    R: 0.6
+    T: 0.4
+    scatter: 0.55
+  water:
+    absorption: 0.5
+    R: 0.1
+    T: 0.9
+    scatter: 0.25
+  wood:
+    absorption: 1.0
+    R: 0.3
+    T: 0.7
+    scatter: 0.35
+  rubber:
+    absorption: 3.0
+    R: 0.25
+    T: 0.75
+    scatter: 0.2
+  ice:
+    absorption: 0.2
+    R: 0.08
+    T: 0.92
+    scatter: 0.12
+  sand:
+    absorption: 1.8
+    R: 0.35
+    T: 0.65
+    scatter: 0.45
+  brick:
+    absorption: 2.2
+    R: 0.55
+    T: 0.45
+    scatter: 0.5
+  asphalt:
+    absorption: 3.2
+    R: 0.5
+    T: 0.5
+    scatter: 0.4
+  foam:
+    absorption: 4.5
+    R: 0.1
+    T: 0.9
+    scatter: 0.08

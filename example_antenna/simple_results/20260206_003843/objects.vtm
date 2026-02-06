@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<VTKFile type="vtkMultiBlockDataSet" version="1.0" byte_order="LittleEndian" header_type="UInt32" compressor="vtkZLibDataCompressor">
+  <vtkMultiBlockDataSet>
+    <DataSet index="0" name="Block-00" file="objects/objects_0.vtp"/>
+    <DataSet index="1" name="Block-01" file="objects/objects_1.vtp"/>
+    <DataSet index="2" name="Block-02" file="objects/objects_2.vtp"/>
+    <DataSet index="3" name="Block-03" file="objects/objects_3.vtp"/>
+    <DataSet index="4" name="Block-04" file="objects/objects_4.vtp"/>
+    <DataSet index="5" name="Block-05" file="objects/objects_5.vtp"/>
+    <DataSet index="6" name="Block-06" file="objects/objects_6.vtp"/>
+    <DataSet index="7" name="Block-07" file="objects/objects_7.vtp"/>
+    <DataSet index="8" name="Block-08" file="objects/objects_8.vtp"/>
+    <DataSet index="9" name="Block-09" file="objects/objects_9.vtp"/>
+    <DataSet index="10" name="Block-10" file="objects/objects_10.vtp"/>
+    <DataSet index="11" name="Block-11" file="objects/objects_11.vtp"/>
+    <DataSet index="12" name="Block-12" file="objects/objects_12.vtp"/>
+    <DataSet index="13" name="Block-13" file="objects/objects_13.vtp"/>
+    <DataSet index="14" name="Block-14" file="objects/objects_14.vtp"/>
+    <DataSet index="15" name="Block-15" file="objects/objects_15.vtp"/>
+    <DataSet index="16" name="Block-16" file="objects/objects_16.vtp"/>
+    <DataSet index="17" name="Block-17" file="objects/objects_17.vtp"/>
+    <DataSet index="18" name="Block-18" file="objects/objects_18.vtp"/>
+    <DataSet index="19" name="Block-19" file="objects/objects_19.vtp"/>
+  </vtkMultiBlockDataSet>
+</VTKFile>

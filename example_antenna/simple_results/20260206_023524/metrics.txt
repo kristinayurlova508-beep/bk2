@@ -1,0 +1,6 @@
+scene: /mnt/c/Users/Kristina Yurorlova/Documents/zdrojove_kody/example_antenna/scene.yaml
+device: cuda
+objects: 3
+MSE: 7.09985709e-03
+MAE: 4.74882983e-02
+MAX_ERR: 1.32758713e+00
