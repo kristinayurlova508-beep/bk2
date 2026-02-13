@@ -1,6 +1,4 @@
-# solver_simple_fast_wave_materials_shadow_diffraction_wavesmooth.py
-# Solver: fast analytic wave field with soft shadows + diffraction + spectral smoothing
-# Solver: быстрый аналитический расчёт волнового поля с мягкими тенями + дифракцией + спектральным сглаживанием
+
 
 import argparse
 import os
