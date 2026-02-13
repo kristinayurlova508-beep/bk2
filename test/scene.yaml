@@ -1,0 +1,37 @@
+scene:
+  source:
+    x0: 1.0
+    y0: 1.0
+    amplitude: 1.0
+    frequency_hz: 1000000000.0
+  air:
+    absorption: 0.1
+  objects:
+  - x1: 0.5
+    x2: 1.0
+    y1: 0.5
+    y2: 1.0
+    material: metal
+  - x1: 1.4
+    x2: 1.9
+    y1: 0.3
+    y2: 0.7
+    material: wood
+  - x1: 2.1
+    x2: 2.6
+    y1: 1.2
+    y2: 1.7
+    material: water
+materials:
+  metal:
+    absorption: 5.0
+    R: 0.9
+    T: 0.1
+  wood:
+    absorption: 1.0
+    R: 0.3
+    T: 0.7
+  water:
+    absorption: 0.5
+    R: 0.1
+    T: 0.9
