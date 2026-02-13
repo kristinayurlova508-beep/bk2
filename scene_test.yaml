@@ -1,0 +1,51 @@
+materials:
+  air:
+    absorption: 0.03
+    c: 300000000.0
+  metal:
+    absorption: 5.0
+    c: 250000000.0
+  plastic:
+    absorption: 0.35
+    c: 240000000.0
+  glass:
+    absorption: 0.6
+    c: 220000000.0
+  concrete:
+    absorption: 2.5
+    c: 200000000.0
+  water:
+    absorption: 0.5
+    c: 150000000.0
+  wood:
+    absorption: 1.0
+    c: 200000000.0
+  rubber:
+    absorption: 3.0
+    c: 160000000.0
+  sand:
+    absorption: 1.8
+    c: 170000000.0
+  asphalt:
+    absorption: 3.2
+    c: 220000000.0
+  foam:
+    absorption: 4.5
+    c: 130000000.0
+  ice:
+    absorption: 0.2
+    c: 310000000.0
+  brick:
+    absorption: 2.2
+    c: 200000000.0
+scene:
+  source:
+    x0: 0.8
+    y0: 1.0
+    amplitude: 1.0
+    frequency_hz: 1000000000.0
+  objects:
+  - x: 1.6
+    y: 1.0
+    r: 0.18
+    material: concrete

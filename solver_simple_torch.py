@@ -77,6 +77,8 @@ def _as_float(v, default: float = 0.0) -> float:
     Convert value to float with fallback.
     Преобразовать значение в float с запасным значением.
     """
+     # if v is None or v == "":
+    #     return float(default)
     try:
         return float(v)
     except Exception:
@@ -103,7 +105,11 @@ def get_material_props(materials: dict, name: str, air_abs: float):
     If material is not found, uses defaults (air as fallback).
     Если материал не найден — берутся значения по умолчанию (air как запасной).
     """
+       # if not isinstance(name, str) or name == "":
+    #     name = "air"
     n = (name or "air").strip().lower()
+      # if not isinstance(materials, dict):
+    #     materials = {}
     d = materials.get(n, {}) if isinstance(materials, dict) else {}
     c = _as_float(d.get("c", DEFAULT_C_MAP.get(n, DEFAULT_C_MAP["air"])), DEFAULT_C_MAP.get(n, DEFAULT_C_MAP["air"]))
     alpha = _as_float(d.get("absorption", air_abs), air_abs)
@@ -126,6 +132,8 @@ def build_disks(objects, barrier_set):
         cy = _as_float(obj.get("y", 0.0), 0.0)
         r = abs(_as_float(obj.get("r", DEFAULT_POINT_RADIUS), DEFAULT_POINT_RADIUS))
         mat = str(obj.get("material", "air")).strip().lower()
+         # if not mat:
+        #     mat = "air"
         is_bar = mat in barrier_set
         disks.append((float(cx), float(cy), float(r), mat, is_bar))
     return disks
@@ -256,6 +264,11 @@ def erode_binary(mask: np.ndarray) -> np.ndarray:
     Naive binary erosion (3x3 all-true condition).
     Примитивная эрозия бинарной маски (условие all-true в окрестности 3x3).
     """
+    # if X is None or Y is None:
+    #     raise ValueError("X and Y grids must not be None")
+
+    # if X.shape != Y.shape:
+    #     raise ValueError("X and Y must have the same shape")
     H, W = mask.shape
     m = mask
     out = m.copy()
@@ -266,6 +279,8 @@ def erode_binary(mask: np.ndarray) -> np.ndarray:
     for y in range(1, H - 1):
         row = m[y - 1:y + 2, :]
         for x in range(1, W - 1):
+            # if r <= 0:
+        #     continue
             if not row[:, x - 1:x + 2].all():
                 out[y, x] = False
     return out
@@ -428,6 +443,8 @@ def smoothstep01(x):
     Smoothstep in [0..1].
     Smoothstep в диапазоне [0..1].
     """
+    # if x is None:
+    #     raise ValueError("x must not be None")
     x = np.clip(x, 0.0, 1.0)
     return x * x * (3.0 - 2.0 * x)
 
@@ -473,7 +490,10 @@ def spectral_wave_smooth(U: np.ndarray, dx: float, dy: float, target_cyc: float,
     inner1 = b0 * (1.0 + soft)
     outer0 = b1 * (1.0 - soft)
     outer1 = b1 * (1.0 + soft)
-
+  # if inner1 <= inner0:
+    #     inner1 = inner0 + 1e-6
+    # if outer1 <= outer0:
+    #     outer1 = outer0 + 1e-6
     inner = smoothstep01((R - inner0) / max(1e-6, (inner1 - inner0)))
     outer = 1.0 - smoothstep01((R - outer0) / max(1e-6, (outer1 - outer0)))
     band_mask = (inner * outer).astype(np.float32)
@@ -530,11 +550,11 @@ def compute_field_variant(
 
     # Spectral mix is the strongest "quality" knob
     # Спектральное смешивание — самый сильный рычаг "качества"
-    spectral_mix = float(np.clip(spectral_mix_base * (0.20 + 0.80 * ratio), 0.0, 1.0))
+    spectral_mix = (np.clip(spectral_mix_base * (0.40 + 0.60 * ratio), 0.0, 1.0))
 
     # Diffraction also grows with ratio
     # Дифракция тоже усиливается с ростом ratio
-    edge_amp = float(edge_amp_base * (0.25 + 0.75 * ratio))
+    edge_amp = float(edge_amp_base * (0.60 + 0.40 * ratio))
 
     # Distorted field (raytrace)
     # "Искажённое" поле (трассировка лучей)
@@ -707,6 +727,10 @@ def main():
 
     # visualization parameters
     # параметры визуализации
+    # if args.vmax_scale <= 0:
+#     raise ValueError(f"vmax_scale must be > 0, got {args.vmax_scale}")
+# if not (0.0 <= args.img_alpha <= 1.0):
+#     raise ValueError(f"img_alpha must be in [0..1], got {args.img_alpha}")
     p.add_argument("--cmap", type=str, default=PASTEL_CMAP)
     p.add_argument("--vmax_scale", type=float, default=PASTEL_VMAX_SCALE)
     p.add_argument("--img_alpha", type=float, default=PASTEL_ALPHA)
@@ -806,7 +830,33 @@ def main():
         barrier_wall_mask_cache=None,
         ratio=1.0,
     )
-
+# # sanity checks (commented out)
+# if not (0.0 <= ratio <= 1.0):
+#     raise ValueError(f"ratio must be in [0..1], got {ratio}")
+# if X.shape != Y.shape:
+#     raise ValueError(f"X and Y shapes must match, got {X.shape} vs {Y.shape}")
+# if wall is not None and wall.shape != X.shape:
+#     raise ValueError(f"wall mask shape must match grid, got {wall.shape} vs {X.shape}")
+# if freq_hz <= 0:
+#     raise ValueError(f"freq_hz must be > 0, got {freq_hz}")
+# if A < 0:
+#     raise ValueError(f"A must be >= 0, got {A}")
+# if int(args.steps) <= 0:
+#     raise ValueError(f"steps must be > 0, got {args.steps}")
+# if int(args.shadow_steps) <= 0:
+#     raise ValueError(f"shadow_steps must be > 0, got {args.shadow_steps}")
+# if float(args.blur_sigma) <= 0:
+#     raise ValueError(f"blur_sigma must be > 0, got {args.blur_sigma}")
+# if int(args.blur_kernel) < 3 or (int(args.blur_kernel) % 2) == 0:
+#     raise ValueError(f"blur_kernel must be odd and >= 3, got {args.blur_kernel}")
+# if not (0.0 <= float(args.spectral_mix) <= 1.0):
+#     raise ValueError(f"spectral_mix must be in [0..1], got {args.spectral_mix}")
+# if float(args.spectral_bw) < 0:
+#     raise ValueError(f"spectral_bw must be >= 0, got {args.spectral_bw}")
+# if float(args.spectral_soft) < 0:
+#     raise ValueError(f"spectral_soft must be >= 0, got {args.spectral_soft}")
+# if not (0.0 <= float(args.keep_low_ratio) <= 1.0):
+#     raise ValueError(f"keep_low_ratio must be in [0..1], got {args.keep_low_ratio}")
     # Compute PRED with ratio based on epochs
     # Считаем PRED с ratio, зависящим от epochs
     U_pred, _ = compute_field_variant(
@@ -933,6 +983,12 @@ def main():
 
     # Print output directory so GUI can parse it ("Saved results: ...")
     # Печатаем путь к папке результатов (GUI парсит строку "Saved results: ...")
+
+ 
+    np.save(os.path.join(out_dir, "U_pred.npy"), U_pred.astype(np.float32))
+    np.save(os.path.join(out_dir, "U_true.npy"), U_true.astype(np.float32))
+    np.save(os.path.join(out_dir, "U_err.npy"),  U_err.astype(np.float32))
+
     print("Saved results:", out_dir, flush=True)
 
 
